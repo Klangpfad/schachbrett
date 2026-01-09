@@ -1,0 +1,198 @@
+/* ===== Grundlayout ===== */
+body{
+  font-family: system-ui, sans-serif;
+  display:flex;
+  gap:24px;
+  padding:24px;
+}
+
+/* ===== Brett ===== */
+#board{
+  width:560px;
+  height:560px;
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  border:2px solid #222;
+}
+
+/* ===== Felder ===== */
+.sq{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:44px;
+  cursor:pointer;
+  position:relative;
+  aspect-ratio:1/1;
+}
+
+.light{background:#f0d9b5;}
+.dark{background:#b58863;}
+
+.selected{
+  outline:3px solid rgba(0,0,0,.7);
+  outline-offset:-3px;
+}
+.legal{
+  box-shadow: inset 0 0 0 4px rgba(70,150,255,.85);
+}
+.from{
+  box-shadow: inset 0 0 0 4px rgba(80,220,140,.85);
+}
+.to{
+  box-shadow: inset 0 0 0 4px rgba(255,120,120,.85);
+}
+
+.piece{z-index:2}
+
+/* ===== Koordinaten ===== */
+.coord-file{
+  position:absolute;
+  bottom:4px;
+  right:6px;
+  font-size:12px;
+  opacity:.6;
+}
+.coord-rank{
+  position:absolute;
+  top:4px;
+  left:6px;
+  font-size:12px;
+  opacity:.6;
+}
+
+/* ===== Sidebar ===== */
+.bar{width:360px}
+
+button{
+  margin:4px 6px 4px 0;
+}
+
+input[type="file"]{max-width:100%}
+
+#moves{
+  max-height:240px;
+  overflow:auto;
+  padding-left:20px;
+}
+
+.clockrow{
+  display:flex;
+  justify-content:space-between;
+  font-weight:700;
+}
+
+small{
+  opacity:.7;
+  display:block;
+  margin-top:6px;
+}
+
+.replay{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin-top:6px;
+}
+
+.pill{
+  font-size:12px;
+  padding:3px 8px;
+  border:1px solid rgba(0,0,0,.2);
+  border-radius:999px;
+  display:inline-block;
+  opacity:.85;
+}
+
+/* ===== Buttons ===== */
+.btn{
+  appearance:none;
+  border:1px solid rgba(0,0,0,.25);
+  background:#f6f6f6;
+  color:#111;
+  padding:6px 12px;
+  border-radius:6px;
+  font-size:14px;
+  line-height:1.2;
+  cursor:pointer;
+  transition:
+    background .15s ease,
+    box-shadow .15s ease,
+    transform .05s ease,
+    opacity .15s ease;
+}
+
+.btn:hover{ background:#eee; }
+
+.btn:active{
+  transform:translateY(1px);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,.2);
+}
+
+.btn:disabled{
+  opacity:.45;
+  cursor:default;
+  transform:none;
+  box-shadow:none;
+}
+
+/* Primary */
+.btn.primary{
+  background:#3b82f6;
+  color:#fff;
+  border-color:#2563eb;
+}
+.btn.primary:hover{
+  background:#2563eb;
+}
+
+/* ===== Replay-Modus (Board + Status) ===== */
+#board.replayMode{
+  filter: grayscale(.25) saturate(.9);
+  box-shadow: 0 0 0 3px rgba(0,0,0,.18);
+}
+
+#board.replayMode .sq{
+  cursor: default;
+}
+
+#status.replayMode{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,.18);
+  background: rgba(255,230,150,.35);
+  font-weight:700;
+}
+
+#status.replayMode::before{
+  content:"▶ Replay: ";
+}
+
+/* ===== Replay-Modus (Sidebar) ===== */
+body.replayMode .bar{
+  opacity:.85;
+}
+
+body.replayMode #reset,
+body.replayMode #clear,
+body.replayMode #undo,
+body.replayMode #clearmoves{
+  opacity:.5;
+}
+
+body.replayMode #reset:hover,
+body.replayMode #clear:hover,
+body.replayMode #undo:hover,
+body.replayMode #clearmoves:hover{
+  opacity:.75;
+}
+
+body.replayMode #rFirst,
+body.replayMode #rPrev,
+body.replayMode #rNext,
+body.replayMode #rLast,
+body.replayMode #rAuto{
+  opacity:1;
+}

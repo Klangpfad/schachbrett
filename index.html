@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Schachbrett</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div id="board"></div>
+
+<div class="bar">
+  <h3>Schachbrett</h3>
+
+  <button id="reset" class="btn">Startaufstellung</button>
+  <button id="clear" class="btn">Leeren</button>
+  <button id="undo" class="btn" disabled>Undo</button>
+  <button id="clearmoves" class="btn">Züge löschen</button>
+  <button id="pgn" class="btn">PGN export</button>
+
+  <hr>
+
+  <div>
+    <div class="pill">Replay (PGN mit Koordinaten-Kommentaren)</div>
+    <div class="replay">
+      <input id="pgnfile" type="file" accept=".pgn" />
+      <button id="rFirst" class="btn" disabled>⏮</button>
+      <button id="rPrev" class="btn" disabled>◀</button>
+      <button id="rNext" class="btn" disabled>▶</button>
+      <button id="rLast" class="btn" disabled>⏭</button>
+      <button id="rAuto" class="btn" disabled>⏵ Auto</button>
+      <span id="rPos" class="pill">0 / 0</span>
+    </div>
+    <small>
+      Empfehlung: Export mit <b>{E2-E4}</b> Kommentaren → Import/Rekonstruktion ist 1:1 stabil.
+    </small>
+  </div>
+
+  <hr>
+
+  <div>
+    <div class="pill">Engine (Live-Bewertung)</div>
+    <div class="replay">
+      <button id="engToggle" class="btn">Engine: AUS</button>
+      <span id="engScore" class="pill">–</span>
+      <span id="engState" class="pill">bereit</span>
+    </div>
+    <small>
+      Erwartet eine Datei <b>stockfish.js</b> im gleichen Ordner (WebWorker).
+      Ohne die Datei bleibt die Engine aus.
+    </small>
+  </div>
+
+  <hr>
+
+  <div id="status">Feld: –</div>
+
+  <strong>Züge:</strong>
+  <ol id="moves"></ol>
+
+  <small>
+    Klick-Klick: Figur auswählen, Zielfeld anklicken.<br>
+    Einfache Zugregeln (keine Schach-/Mattprüfung).<br>
+    Notation: <b>SAN + Koordinaten</b>.
+  </small>
+
+  <hr>
+
+  <div class="clockrow">
+    <span>⏱ Weiß</span>
+    <span id="wtime">2:00:00</span>
+  </div>
+  <div class="clockrow">
+    <span>⏱ Schwarz</span>
+    <span id="btime">2:00:00</span>
+  </div>
+
+  <button id="clockToggle" class="btn primary">Start</button>
+  <button id="clockReset" class="btn">Uhr zurücksetzen</button>
+
+  <small>
+    Am Zug: <b id="turn">Weiß</b><br>
+    Zug: <b id="moveno">1</b> / 40
+  </small>
+</div>
+
+<script src="main.js"></script>
+
+</body>
+</html>
